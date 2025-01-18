@@ -1,31 +1,29 @@
 import * as THREE from 'three';
 
 export default class Lighting {
-	D = 300;
+	D = 200;
 
 	constructor() {
 		this.hemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.6);
 		this.hemiLight.color.setHSL(0.6, 0.75, 0.5);
 		this.hemiLight.groundColor.setHSL(0.095, 0.5, 0.5);
 		this.hemiLight.position.set(0, 500, 0);
-		this.hemiLight.castShadow = true;
 
 		this.dirLight = new THREE.DirectionalLight(0xffffff, 1);
-		this.dirLight.position.set(1, 0.75, 0);
+		this.dirLight.position.set(1, 7, 1);
 		this.dirLight.position.multiplyScalar(50);
-		this.dirLight.shadowCameraVisible = true;
-		this.dirLight.intensity = 10;
-		this.dirLight.shadowDarkness = 0.7;
-		this.dirLight.castShadow = true;
-		this.dirLight.shadowMapWidth = this.dirLight.shadowMapHeight = 1024 * 2;
-		this.dirLight.shadowCameraFar = 3500;
-		this.dirLight.shadowBias = -0.0001;
-		this.dirLight.shadowDarkness = 0.35;
+		this.dirLight.intensity = 2;
 
-		this.dirLight.shadowCameraLeft = -this.D;
-		this.dirLight.shadowCameraRight = this.D;
-		this.dirLight.shadowCameraTop = this.D;
-		this.dirLight.shadowCameraBottom = -this.D;
+		this.dirLight.castShadow = true;
+		this.dirLight.shadow.bias = -0.0001;
+		this.dirLight.shadow.mapSize.x = 1024;
+		this.dirLight.shadow.mapSize.y = 1024;
+		this.dirLight.shadow.camera.far = 1000;
+		this.dirLight.shadow.camera.near = 1;
+		this.dirLight.shadow.camera.left = -this.D;
+		this.dirLight.shadow.camera.right = this.D;
+		this.dirLight.shadow.camera.top = this.D;
+		this.dirLight.shadow.camera.bottom = -this.D;
 
 		this.vertexShader = document.getElementById('vertexShader').textContent;
 		this.fragmentShader = document.getElementById('fragmentShader').textContent;

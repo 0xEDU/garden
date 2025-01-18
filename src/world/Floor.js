@@ -4,7 +4,7 @@ export default class Floor {
 	constructor() {
 		const floorGeometry = new THREE.PlaneGeometry(2000, 2000);
 		const floorMaterial = new THREE.MeshPhongMaterial({
-			color: 0x999999,
+			color: 0x009900,
 			side: THREE.DoubleSide
 		});
 

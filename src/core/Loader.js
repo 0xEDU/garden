@@ -1,3 +1,4 @@
+import * as THREE from 'three';
 import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
 import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
 
@@ -25,9 +26,14 @@ export default class Loader {
 		this.objLoader.load(
 			`/models/${obj}.obj`,
 			(object) => {
-				object.position.set(position.x, position.y, position.z);
-				object.castShadow = true;
 				scene.add(object);
+				object.position.set(position.x, position.y, position.z);
+				object.traverse((child) => {
+					if (child instanceof THREE.Mesh) {
+						child.castShadow = true;
+						// child.receiveShadow = true;
+					}
+				});
 			},
 			(xhr) => {
 				console.log((xhr.loaded / xhr.total * 100) + '% object loaded');

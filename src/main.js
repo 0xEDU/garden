@@ -7,9 +7,9 @@ import Floor from './world/Floor.js';
 import Lighting from './world/Lighting.js';
 import Sky from './world/Sky.js';
 
+const loader = new Loader();
 const lighting = new Lighting();
 const sky = new Sky(lighting);
-const loader = new Loader();
 const floor = new Floor();
 
 const renderer = new THREE.WebGLRenderer();
@@ -30,9 +30,11 @@ scene.fog = new THREE.Fog(0x222233, 0, 20000);
 renderer.setClearColor(scene.fog.color, 1);
 scene.fog.color.copy(lighting.uniforms.bottomColor.value);
 
-scene.add(lighting.instance())
-scene.add(sky.instance());
-scene.add(floor.instance());
+scene.add(
+	lighting.instance(),
+	sky.instance(),
+	floor.instance()
+);
 
 const uiElements = new UIElements();
 uiElements.init(scene, camera.instance());

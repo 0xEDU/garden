@@ -42,7 +42,7 @@ export default class Camera {
 			this._velocity.x -= this._velocity.x * this.X_VELOCITY * delta;
 			this._velocity.z -= this._velocity.z * this.Z_VELOCITY * delta;
 
-			this._velocity.y -= this.GRAVITY * this.MASS * delta; // 100.0 = mass
+			this._velocity.y -= this.GRAVITY * this.MASS * delta;
 
 			this._direction.z = Number(this._moveForward) - Number(this._moveBackward);
 			this._direction.x = Number(this._moveRight) - Number(this._moveLeft);
